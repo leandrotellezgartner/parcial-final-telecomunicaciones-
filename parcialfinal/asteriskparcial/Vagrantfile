@@ -1,0 +1,10 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure("2") do |config|
+  config.vm.define :asterisk do |asterisk|
+       asterisk.vm.box = "bento/centos-7"
+       asterisk.vm.network :private_network, ip: "192.168.50.2"
+       asterisk.vm.hostname = "asterisk"
+  end
+
+end

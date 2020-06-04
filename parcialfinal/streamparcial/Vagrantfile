@@ -1,0 +1,19 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure("2") do |config|
+  config.vm.define :streama do |streama|
+       streama.vm.box = "bento/centos-7"
+       streama.vm.network :private_network, ip: "192.168.50.3"
+       streama.vm.hostname = "streama"
+       streama.vm.provision "shell", path: "streama.sh"
+  end
+
+  config.vm.define :firewall do |firewall|
+       firewall.vm.box = "bento/centos-7"
+       firewall.vm.network :public_network, bridge: "en1: WiFi (AirPort)"
+       firewall.vm.network :private_network, ip: "192.168.50.4"
+       firewall.vm.hostname = "firewall"
+       firewall.vm.provision "shell", path: "firewall.sh"
+  end
+
+end
